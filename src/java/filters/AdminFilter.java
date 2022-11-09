@@ -18,23 +18,16 @@ import models.User;
 public class AdminFilter implements Filter {
      
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response,
-            FilterChain chain)
-            throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         
             // code that is executed before the servlet
             HttpServletRequest httpRequest = (HttpServletRequest)request;
             HttpSession session = httpRequest.getSession();
             String email = (String)session.getAttribute("email");
+            
             UserDB userdb = new UserDB();
             User user = userdb.get(email);
-            
-            if (email == null) {
-                HttpServletResponse httpResponse = (HttpServletResponse)response;
-                httpResponse.sendRedirect("login");
-                return;
-            }
-            
+          
             if(user.getRole().getRoleId() != 1) {
                 HttpServletResponse httpResponse = (HttpServletResponse)response;
                 httpResponse.sendRedirect("notes");
