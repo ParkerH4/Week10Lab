@@ -157,5 +157,9 @@ public class User implements Serializable {
     public String toString() {
         return "models.User[ email=" + email + " ]";
     }
+
+    public int getRoleId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
